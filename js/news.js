@@ -70,29 +70,56 @@ const showAllNews = (data, category_name) => {
     const allNewsContainer = document.getElementById('all-news');
     allNewsContainer.innerHTML = '';
     data.forEach(singleNews => {
-        // console.log(singleNews);
+        console.log(singleNews);
         const newsDiv = document.createElement('div');
         newsDiv.classList.add('card', 'mb-3');
         newsDiv.innerHTML = `
             <div class="row g-0">
-            <div class="col-md-4">
-                <img src="${singleNews.image_url}" class="img-fluid h-100 rounded-start" alt="...">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                <h5 class="card-title">${singleNews.title}</h5>
-                <p class="card-text">${singleNews.details}</p>
-                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                <div class="col-md-4">
+                    <img src="${singleNews.image_url}" class="img-fluid rounded-start" alt="...">
                 </div>
-            </div>
+                <div class="col-md-8 d-flex flex-column">
+                    <div class="card-body">
+                    <h5 class="card-title">${singleNews.title}</h5>
+                    <p class="card-text">${singleNews.details.slice(0, 200)}...</p>
+                    </div>
+                    <div class="card-footer d-flex flex-column-reverse flex-sm-column-reverse flex-md-row flex-lg-row flex-xl-row justify-content-between align-items-center gap-4">
+                        <div class="d-flex gap-3 justify-content-center align-items-center">
+                        <!-- author -->
+                        <div><img src="${singleNews.author.img}" style="height:40px; width: 40px;" alt="" class="rounded-circle"></div>
+                        <div>
+                            <h5 class="p-0 m-0">Jane Cooper</h5>
+                            <p>Jan 10, 2022 </p>
+                        </div>
+                        </div>
+                        <!-- View news -->
+                        <div>
+                        <p><i class="fa-solid fa-eye"></i><span> 5M</span></p>
+                        </div>
+                        <!-- Rating -->
+                        <div>
+                        <div>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                        </div>
+                        </div>
+                        <!-- Details Button -->
+                        <div>
+                        <i class="fa-solid fa-circle-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
             </div>`;
         allNewsContainer.appendChild(newsDiv);
     })
 }
 
 
-
-
+// for first open page
+fetchCategoryNews('07', 'Arts');
 
 
 
